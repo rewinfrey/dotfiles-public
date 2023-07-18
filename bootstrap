@@ -36,8 +36,8 @@ fi
 # Install neovim
 NVIM_VERSION=0.9.1
 sudo apt-get install -y libfuse2
-curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
-chmod a+x $HOME/bin/nvim
+curl -L -o nvim.appimage https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
+chmod u+x nvim.appimage && ./nvim.appimage
 
 # Install direnv
 sudo apt-get install -y direnv
