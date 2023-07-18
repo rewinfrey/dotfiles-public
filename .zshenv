@@ -5,7 +5,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # DirEnv
-eval "$(direnv hook zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
 # Git aliases
 alias ga="git add"
