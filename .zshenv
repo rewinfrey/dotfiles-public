@@ -1,5 +1,8 @@
-# Brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Check if the OS is macOS (Mac OS)
+if [[ "$OSTYPE" == darwin* ]]; then
+  # Brew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # DirEnv
 eval "$(direnv hook zsh)"
@@ -25,10 +28,6 @@ alias gb="git branch -v"
 alias gbd="git branch -D"
 alias gp="git pull"
 alias gf="git fetch"
-
-# GitHub
-export CR_PAT=$(cat ~/.cr-pat)
-alias cr_auth="echo $CR_PAT | docker login ghcr.io -u rewinfrey --password-stdin"
 
 # Codespaces
 alias ghc="gh codespace"
@@ -78,3 +77,9 @@ alias tv="./contrib/test test"
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+# Check if .zshenv.private file exists and source it
+if [[ -e "$HOME/.zshenv.private" ]]; then
+  source "$HOME/.zshenv.private"
+fi
+
