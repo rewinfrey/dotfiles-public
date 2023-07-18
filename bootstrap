@@ -64,9 +64,3 @@ create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv"
 create_symlink "$dotfiles_dir/.config" "$HOME/.config"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
-
-# Install neovim
-NVIM_VERSION=0.9.1
-sudo apt-get install -y libfuse2
-curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
-chmod a+x $HOME/bin/nvim
