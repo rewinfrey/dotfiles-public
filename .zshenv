@@ -30,6 +30,14 @@ alias gf="git fetch"
 export CR_PAT=$(cat ~/.cr-pat)
 alias cr_auth="echo $CR_PAT | docker login ghcr.io -u rewinfrey --password-stdin"
 
+# Codespaces
+alias ghc="gh codespace"
+alias ghcc="gh codespace create"
+alias ghcd="gh codespace delete"
+alias ghcl="gh codespace list"
+alias ghcr="gh codespace rebuild"
+alias ghcs="gh codespace ssh"
+
 # Go
 export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
 export GOPRIVATE=
