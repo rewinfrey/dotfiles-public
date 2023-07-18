@@ -1,0 +1,72 @@
+#!/bin/bash
+
+if [ -z "$USER" ]; then
+    USER=$(id -un)
+fi
+
+echo >&2 "====================================================================="
+echo >&2 " Setting up codespaces environment"
+echo >&2 ""
+echo >&2 " USER        $USER"
+echo >&2 " HOME        $HOME"
+echo >&2 "====================================================================="
+
+cd $HOME
+
+# Make passwordless sudo work
+export SUDO_ASKPASS=/bin/true
+
+# Clean environment
+rm -rf .oh-my-bash
+rm -rf .oh-my-zsh
+rm .zshrc
+
+# A bit of a hack
+mv .gitconfig .gitconfig.private
+
+# Check if dotfiles directory exists
+dotfiles_dir=~/dotfiles-public
+if [ ! -d "$dotfiles_dir" ]; then
+    # Clone the dotfiles repository
+    git clone https://github.com/rewinfrey/dotfiles-public.git "$dotfiles_dir"
+else
+    echo "dotfiles directory already exists. Skipping clone..."
+fi
+
+# Function to create symlink with error handling
+create_symlink() {
+  source="$1"
+  target="$2"
+  echo "Creating symlink: $target -> $source"
+
+  if [ -L "$target" ]; then
+    existing_link=$(readlink "$target")
+    if [ "$existing_link" = "$source" ]; then
+      echo "Symlink already exists. Skipping..."
+      return
+    else
+      echo "Removing existing symlink: $target"
+      rm "$target"
+    fi
+  elif [ -e "$target" ]; then
+    echo "Error: $target already exists and is not a symlink. Skipping..."
+    return
+  fi
+
+  ln -s "$source" "$target"
+}
+
+# Create symlinks
+create_symlink "$dotfiles_dir/.gitconfig" "$HOME/.gitconfig"
+create_symlink "$dotfiles_dir/.gitignore" "$HOME/.gitignore"
+create_symlink "$dotfiles_dir/.zshrc" "$HOME/.zshrc"
+create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv"
+create_symlink "$dotfiles_dir/.config" "$HOME/.config"
+create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
+create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
+
+# Install neovim
+NVIM_VERSION=0.9.1
+sudo apt-get install -y libfuse2
+curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
+chmod a+x $HOME/bin/nvim
