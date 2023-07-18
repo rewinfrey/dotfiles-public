@@ -36,6 +36,15 @@ else
     echo "dotfiles directory already exists. Skipping clone..."
 fi
 
+# Install neovim
+NVIM_VERSION=0.9.1
+sudo apt-get install -y libfuse2
+curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
+chmod a+x $HOME/bin/nvim
+
+# Install direnv
+sudo apt-get install -y direnv
+
 # Function to create symlink with error handling
 create_symlink() {
   source="$1"
@@ -68,11 +77,3 @@ create_symlink "$dotfiles_dir/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
 
-# Install neovim
-NVIM_VERSION=0.9.1
-sudo apt-get install -y libfuse2
-curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
-chmod a+x $HOME/bin/nvim
-
-# Install direnv
-sudo apt-get install -y direnv
