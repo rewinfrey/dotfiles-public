@@ -57,10 +57,14 @@ alias se="cd $HOME/github/symbol-extraction; l"
 alias vim="nvim"
 
 # Ruby
-eval "$(frum init)"
+if command -v frum >/dev/null 2>&1; then
+  eval "$(frum init)"
+fi
 
 # Rust
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
 export PATH=$HOME/.cargo/bin:$PATH
 alias cbe="cargo bench"
 alias cb="cargo build"
