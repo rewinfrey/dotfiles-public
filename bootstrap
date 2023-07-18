@@ -20,6 +20,7 @@ export SUDO_ASKPASS=/bin/true
 rm -rf .oh-my-bash
 rm -rf .oh-my-zsh
 rm .zshrc
+rm .zshenv
 
 # A bit of a hack
 mv .gitconfig .gitconfig.private
@@ -37,7 +38,6 @@ fi
 NVIM_VERSION=0.9.1
 sudo apt-get install -y libfuse2
 curl -LO https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim.appimage
-chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
 ./squashfs-root/AppRun --version
 sudo mv squashfs-root /
