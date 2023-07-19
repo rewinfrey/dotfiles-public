@@ -98,6 +98,7 @@ require('packer').startup({
 		use 'tpope/vim-rhubarb'
 		use 'lewis6991/gitsigns.nvim'
 
+
 		use({
 			'rose-pine/neovim',
 			as = 'rose-pine',
@@ -107,6 +108,7 @@ require('packer').startup({
 		})
 		use "EdenEast/nightfox.nvim"
 		use "navarasu/onedark.nvim"
+		use "rigellute/shades-of-purple.vim"
 
 		use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 		use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
