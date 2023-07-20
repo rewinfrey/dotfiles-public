@@ -8,22 +8,15 @@ vim.keymap.set('n', '<leader>w', ':set wrap!<CR>')
 -- Disable search highlighting
 vim.keymap.set({ 'n', 'v' }, '<leader><space>', ':noh<CR>')
 
--- Nvim-tree keymaps
--- vim.keymap.set('n', '<leader>f', ':NvimTreeFindFile<CR>')
--- vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>')
-
-vim.keymap.set('n', '<leader>f', ':NERDTreeFind<CR>')
-vim.keymap.set('n', '<leader>t', ':NERDTreeToggle<CR>')
+-- NerdTree keymaps
+vim.keymap.set('n', '<leader>nf', ':NERDTreeFind<CR>')
+vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>')
 
 -- Yank the current buffer's relative file path to the system's paste buffer
 vim.keymap.set('n', '<leader>l', ':let @+=expand("%")<CR>')
 
 -- Yank the current buffer's absolute file path to the system's paste buffer
 vim.keymap.set('n', '<leader>L', ':let @+=expand("%:p")<CR>')
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set('n', '<C-s>', ':w<CR>')
 vim.keymap.set('n', 'Q', ':q<CR>')
@@ -84,6 +77,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Go build
+vim.keymap.set('n', '<leader>b', ':w<CR>:GoBuild<CR>')
+vim.keymap.set('n', '<leader>t', ':GoTest<CR>')
+vim.keymap.set('n', '<C-n>', ':cnext<CR>')
+vim.keymap.set('n', '<C-p>', ':cprevious<CR>')
 
 -- Go to def vertical split (requires vim-go)
 vim.api.nvim_create_autocmd('FileType', {
