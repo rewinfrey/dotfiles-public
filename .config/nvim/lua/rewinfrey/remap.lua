@@ -125,3 +125,8 @@ vim.api.nvim_create_autocmd(
   { 'InsertEnter', 'WinLeave' },
   { pattern = '*', command = 'set nocursorline', group = cursorGrp }
 )
+
+-- Lspsaga
+vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
+vim.keymap.set('n', 'D', '<cmd>Lspsaga peek_definition<CR>')
+vim.keymap.set('n', 'T', '<cmd>Lspsaga peek_type_definition<CR>')
