@@ -75,6 +75,10 @@ alias cr="cargo run"
 alias ct="cargo test"
 alias ctnc="cargo test -- --nocapture"
 
+# Tree-sitter
+alias tsg="tree-sitter generate"
+alias tsp="tree-sitter parse"
+
 # Other
 alias notes="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Notes; vim"
 
