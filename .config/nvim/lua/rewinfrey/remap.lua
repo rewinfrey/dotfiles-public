@@ -9,8 +9,8 @@ vim.keymap.set('n', '<leader>w', ':set wrap!<CR>')
 vim.keymap.set({ 'n', 'v' }, '<leader><space>', ':noh<CR>')
 
 -- NerdTree keymaps
-vim.keymap.set('n', '<leader>nf', ':NERDTreeFind<CR>')
-vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>')
+vim.keymap.set('n', '<leader>f', ':NERDTreeFind<CR>')
+vim.keymap.set('n', '<leader>t', ':NERDTreeToggle<CR>')
 
 -- Yank the current buffer's relative file path to the system's paste buffer
 vim.keymap.set('n', '<leader>l', ':let @+=expand("%")<CR>')
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Go build
 vim.keymap.set('n', '<leader>b', ':w<CR>:GoBuild<CR>')
-vim.keymap.set('n', '<leader>t', ':GoTest<CR>')
+-- vim.keymap.set('n', '<leader>t', ':GoTest<CR>') -- conflicts with NerdTree toggle
 vim.keymap.set('n', '<C-n>', ':cnext<CR>')
 vim.keymap.set('n', '<C-p>', ':cprevious<CR>')
 

@@ -82,7 +82,7 @@ require('packer').startup({
 		use 'nvim-treesitter/playground'
 
 		-- Toggle between relative line numbers (active buffer) and absolute line numbers (inactive buffers)
-		-- use 'jeffkreeftmeijer/vim-numbertoggle'
+		use 'jeffkreeftmeijer/vim-numbertoggle'
 
 		-- Maximize current buffer and restore
 		use 'szw/vim-maximizer'
@@ -97,7 +97,6 @@ require('packer').startup({
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-rhubarb'
 		use 'lewis6991/gitsigns.nvim'
-
 
 		use({
 			'rose-pine/neovim',

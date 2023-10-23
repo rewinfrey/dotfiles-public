@@ -17,7 +17,7 @@ vim.o.cursorline = true
 
 -- Make line numbers default
 vim.wo.number = true
-vim.wo.relativenumber = false
+vim.wo.relativenumber = true
 
 -- Enable break indent
 vim.o.breakindent = true
