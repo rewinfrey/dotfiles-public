@@ -109,7 +109,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Toggle line number mode
-vim.api.nvim_create_autocmd('BufEnter,FocusGained,InsertLeave,WinEnter', {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
   pattern = '*',
   callback = function(args)
   end
