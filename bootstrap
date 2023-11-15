@@ -25,7 +25,7 @@ rm -rf .oh-my-zsh
 rm .zshrc
 
 # A bit of a hack
-mv .gitconfig .gitconfig.private
+# mv .gitconfig .gitconfig.private
 
 # Check if dotfiles directory exists
 dotfiles_dir=~/dotfiles-public
@@ -49,9 +49,6 @@ sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 # Install tmux
 sudo apt-get install -y tmux
-
-# Change to zsh after symlinking zshenv
-sudo chsh -s /usr/bin/zsh $USER
 
 # Install direnv
 sudo apt-get install -y direnv
@@ -80,7 +77,6 @@ create_symlink() {
 }
 
 # Create symlinks
-create_symlink "$dotfiles_dir/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$dotfiles_dir/.gitignore" "$HOME/.gitignore"
 create_symlink "$dotfiles_dir/.zshrc" "$HOME/.zshrc"
 create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv"
@@ -88,3 +84,5 @@ create_symlink "$dotfiles_dir/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
 
+# Change to zsh after symlinking zshenv
+sudo chsh -s /usr/bin/zsh $USER
