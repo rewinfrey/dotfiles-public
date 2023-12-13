@@ -10,7 +10,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader><space>', ':noh<CR>')
 
 -- NerdTree keymaps
 vim.keymap.set('n', '<leader>f', ':NERDTreeFind<CR>')
-vim.keymap.set('n', '<leader>t', ':NERDTreeToggle<CR>')
+vim.keymap.set('n', '<leader>tt', ':NERDTreeToggle<CR>')
 
 -- Yank the current buffer's relative file path to the system's paste buffer
 vim.keymap.set('n', '<leader>l', ':let @+=expand("%")<CR>')
@@ -43,7 +43,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -79,8 +78,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Go build
-vim.keymap.set('n', '<leader>b', ':w<CR>:GoBuild<CR>')
--- vim.keymap.set('n', '<leader>t', ':GoTest<CR>') -- conflicts with NerdTree toggle
+vim.keymap.set('n', '<leader>gb', ':w<CR>:GoBuild<CR>')
+vim.keymap.set('n', '<leader>gt', ':GoTest<CR>')
 vim.keymap.set('n', '<C-n>', ':cnext<CR>')
 vim.keymap.set('n', '<C-p>', ':cprevious<CR>')
 
@@ -126,7 +125,47 @@ vim.api.nvim_create_autocmd(
   { pattern = '*', command = 'set nocursorline', group = cursorGrp }
 )
 
+-- View all keymaps
+vim.keymap.set('n', '<leader>km', require('telescope.builtin').keymaps)
+
+-- Tree-sitter picker
+vim.keymap.set('n', '<space>tp', require('telescope.builtin').treesitter)
+
 -- Lspsaga
 vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
 vim.keymap.set('n', 'D', '<cmd>Lspsaga peek_definition<CR>')
 vim.keymap.set('n', 'T', '<cmd>Lspsaga peek_type_definition<CR>')
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>gv', ':vsplit | lua vim.lsp.buf.definition()<CR>', ops)
+    vim.keymap.set('n', '<leader>gs', ':belowright split | lua vim.lsp.buf.definition()<CR>', ops)
+    --vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
