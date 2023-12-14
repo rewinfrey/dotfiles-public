@@ -125,12 +125,6 @@ vim.api.nvim_create_autocmd(
   { pattern = '*', command = 'set nocursorline', group = cursorGrp }
 )
 
--- View all keymaps
-vim.keymap.set('n', '<leader>km', require('telescope.builtin').keymaps)
-
--- Tree-sitter picker
-vim.keymap.set('n', '<space>tp', require('telescope.builtin').treesitter)
-
 -- Lspsaga
 vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
 vim.keymap.set('n', 'D', '<cmd>Lspsaga peek_definition<CR>')
@@ -143,6 +137,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- View all keymaps
+    vim.keymap.set('n', '<leader>km', require('telescope.builtin').keymaps)
+
+    -- Tree-sitter picker
+    vim.keymap.set('n', '<space>tp', require('telescope.builtin').treesitter)
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
