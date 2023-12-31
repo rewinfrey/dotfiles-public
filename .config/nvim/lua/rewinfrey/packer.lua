@@ -29,6 +29,10 @@ require('packer').startup({
 		}
 
 		use {
+			'justinmk/vim-sneak'
+		}
+
+		use {
 			'ggandor/leap.nvim',
 		}
 
@@ -154,7 +158,6 @@ require('packer').startup({
 
 		-- Auto formatting
 		use 'mhartington/formatter.nvim'
-
 
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
