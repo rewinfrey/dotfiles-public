@@ -53,6 +53,9 @@ vim.g.rustfmt_autosave = 1
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Global statusline
+vim.o.laststatus = 3
+
 -- Detect tsg files
 vim.cmd [[
   autocmd BufREad,BufNewFile *.tsg set filetype=tsg
