@@ -1,14 +1,3 @@
-# Check if the OS is macOS (Mac OS)
-if [[ "$OSTYPE" == darwin* ]]; then
-  # Brew
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# DirEnv
-#if command -v direnv >/dev/null 2>&1; then
-#  eval "$(direnv hook zsh)"
-#fi
-
 # Git aliases
 alias ga="git add"
 alias gc="git commit"
@@ -58,16 +47,6 @@ alias se="cd $HOME/github/symbol-extraction; l"
 # Neovim
 alias vim="nvim"
 
-# Ruby
-if command -v frum >/dev/null 2>&1; then
-  eval "$(frum init)"
-fi
-
-# Rust
-if [ -f "$HOME/.cargo/env" ]; then
-  . "$HOME/.cargo/env"
-fi
-export PATH=$HOME/.cargo/bin:$PATH
 alias cbe="cargo bench"
 alias cb="cargo build"
 alias cc="cargo check"
@@ -87,9 +66,3 @@ alias tv="./contrib/test test"
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-
-# Check if .zshenv.private file exists and source it
-if [[ -e "$HOME/.zshenv.private" ]]; then
-  source "$HOME/.zshenv.private"
-fi
-
