@@ -1,7 +1,8 @@
 # Git aliases
 alias ga="git add"
-alias gc="git commit"
+alias gc="git commit -v"
 alias gca="git commit --amend"
+alias gcm="git commit -m"
 alias gcan="git commit --amend --no-edit"
 alias gco="git checkout"
 alias gd="git diff"
@@ -39,6 +40,8 @@ export PATH=$GOPATH/bin:$PATH
 # Navigation aliases
 alias l="ls -alhGg"
 alias aleph="cd $HOME/github/aleph; l"
+alias blackbird="cd $HOME/github/blackbird; l"
+alias blackbird-mw="cd $HOME/github/blackbird-mw; l"
 alias cloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs; l"
 alias github="cd $HOME/github; l"
 alias personal="cd $HOME/personal; l"
@@ -66,3 +69,11 @@ alias tv="./contrib/test test"
 
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+# Config files
+alias ezshenv="vim $HOME/.zshenv"
+alias ezshrc="vim $HOME/.zshrc"
+alias etmux="vim $HOME/.tmux.conf"
+alias epacker="vim $HOME/.config/nvim/lua/rewinfrey/packer.lua"
+alias evim="vim $HOME/.config/nvim/lua/rewinfrey/vim.lua"
+alias eremap="vim $HOME/.config/nvim/lua/rewinfrey/remap.lua"
