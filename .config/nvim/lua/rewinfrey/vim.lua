@@ -2,6 +2,9 @@ local vim = vim
 -- Vim configuration
 -- See `:help vim.o`
 
+-- Disable swap files
+vim.o.swapfile = false
+
 -- Disable netrw and enable nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

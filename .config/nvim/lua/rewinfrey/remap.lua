@@ -21,9 +21,6 @@ vim.keymap.set('n', '<leader>L', ':let @+=expand("%:p")<CR>')
 vim.keymap.set('n', '<C-s>', ':w<CR>')
 vim.keymap.set('n', 'Q', ':q<CR>')
 
--- MarkdownPreview
-vim.keymap.set('n', '<leader>mp', ':MarkdownPreview<CR>')
-
 -- Custom function for defining vim keymaps
 function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
@@ -32,6 +29,9 @@ function map(mode, lhs, rhs, opts)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
+-- Toggle relative line numbers
+map('n', '<leader>rln', ':set rnu!<CR>')
 
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -76,6 +76,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Markdown preview
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
+vim.keymap.set('n', '<leader>mp', ':PeekOpen<CR>')
+vim.keymap.set('n', '<leader>mc', ':PeekClose<CR>')
 
 -- Go build
 vim.keymap.set('n', '<leader>gb', ':w<CR>:GoBuild<CR>')

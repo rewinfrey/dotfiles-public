@@ -86,7 +86,7 @@ require('packer').startup({
 		use 'nvim-treesitter/playground'
 
 		-- Toggle between relative line numbers (active buffer) and absolute line numbers (inactive buffers)
-		use 'jeffkreeftmeijer/vim-numbertoggle'
+		-- use 'jeffkreeftmeijer/vim-numbertoggle'
 
 		-- Maximize current buffer and restore
 		use 'szw/vim-maximizer'
@@ -106,7 +106,11 @@ require('packer').startup({
 			'rose-pine/neovim',
 			as = 'rose-pine',
 			config = function()
-				require('rose-pine').setup({ disable_italics = true, dark_variant = 'moon' })
+				require('rose-pine').setup({
+					styles = { italic = false },
+					disable_italics = true,
+					dark_variant = 'moon',
+				})
 			end
 		})
 		use "EdenEast/nightfox.nvim"
@@ -143,12 +147,7 @@ require('packer').startup({
 		})
 
 		-- Markdown Preview
-		use({
-			"iamcco/markdown-preview.nvim",
-			run = function()
-				vim.fn["mkdp#util#install"]()
-			end,
-		})
+		use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
 
 		use({ "tpope/vim-repeat" })
 
