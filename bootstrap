@@ -53,6 +53,9 @@ sudo apt-get install -y tmux
 # Install direnv
 sudo apt-get install -y direnv
 
+# Install fzf
+sudo apt-get install -y fzf
+
 # Function to create symlink with error handling
 create_symlink() {
   source="$1"
