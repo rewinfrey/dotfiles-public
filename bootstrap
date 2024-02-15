@@ -60,6 +60,7 @@ sudo apt-get install -y fzf
 create_symlink() {
   source="$1"
   target="$2"
+  force="$3"
   echo "Creating symlink: $target -> $source"
 
   if [ -L "$target" ]; then
@@ -72,7 +73,13 @@ create_symlink() {
       rm "$target"
     fi
   elif [ -e "$target" ]; then
-    echo "Error: $target already exists and is not a symlink. Skipping..."
+    if [ -n "$force" ]; then
+      echo "Moving existing file: $target to $target.bak"
+      mv "$target" "$target.bak"
+      create_symlink "$source" "$target"
+    else
+      echo "Error: $target already exists and is not a symlink. Skipping..."
+    fi
     return
   fi
 
@@ -82,7 +89,7 @@ create_symlink() {
 # Create symlinks
 create_symlink "$dotfiles_dir/.gitignore" "$HOME/.gitignore"
 create_symlink "$dotfiles_dir/.zshrc" "$HOME/.zshrc"
-create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv"
+create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv" "force"
 create_symlink "$dotfiles_dir/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
