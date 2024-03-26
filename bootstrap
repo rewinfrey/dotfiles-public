@@ -22,7 +22,6 @@ export SUDO_ASKPASS=/bin/true
 # Clean environment
 rm -rf .oh-my-bash
 rm -rf .oh-my-zsh
-rm .zshrc
 
 # A bit of a hack
 # mv .gitconfig .gitconfig.private
@@ -74,7 +73,7 @@ create_symlink() {
     fi
   elif [ -e "$target" ]; then
     if [ -n "$force" ]; then
-      echo "Moving existing file: $target to $target.bak"
+      echo "Moving existing file: $target"
       mv "$target" "$target.bak"
       create_symlink "$source" "$target"
     else
@@ -87,8 +86,8 @@ create_symlink() {
 }
 
 # Create symlinks
-create_symlink "$dotfiles_dir/.gitignore" "$HOME/.gitignore"
-create_symlink "$dotfiles_dir/.zshrc" "$HOME/.zshrc"
+create_symlink "$dotfiles_dir/.gitignore" "$HOME/.gitignore" "force"
+create_symlink "$dotfiles_dir/.zshrc" "$HOME/.zshrc" "force"
 create_symlink "$dotfiles_dir/.zshenv" "$HOME/.zshenv" "force"
 create_symlink "$dotfiles_dir/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
