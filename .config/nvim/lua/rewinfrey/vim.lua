@@ -73,6 +73,11 @@ vim.cmd [[
   autocmd BufWritePre * lua vim.lsp.buf.format()
 ]]
 
+-- Always enable spell checking
+vim.cmd [[
+  autocmd BufRead,BufNewFile * setlocal spell spelllang=en_us
+]]
+
 -- MarkdownPreview configuration
 vim.g.mkdp_page_title = ''
 
