@@ -29,14 +29,6 @@ alias ghcl="gh codespace list"
 alias ghcr="gh codespace rebuild"
 alias ghcs="gh codespace ssh"
 
-# Go
-export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
-export GOPRIVATE=
-export GONOPROXY=
-export GONOSUMDB=github.com/github/*
-export GOPATH=`go env GOPATH`
-export PATH=$GOPATH/bin:$PATH
-
 # Navigation aliases
 alias l="ls -alhGg"
 alias aleph="cd $HOME/github/aleph; l"
@@ -77,3 +69,32 @@ alias etmux="vim $HOME/.tmux.conf"
 alias epacker="vim $HOME/.config/nvim/lua/rewinfrey/packer.lua"
 alias evim="vim $HOME/.config/nvim/lua/rewinfrey/vim.lua"
 alias eremap="vim $HOME/.config/nvim/lua/rewinfrey/remap.lua"
+
+# Helper functions
+delete_unused_branches() {
+    # Fetch the latest state of the remote and prune deleted branches
+    git fetch --prune
+
+    # List local branches that are gone (do not have a corresponding remote branch)
+    local branches_to_delete=$(git branch -vv | grep ': gone]' | awk '{print $1}')
+
+    # Check if there are any branches to delete
+    if [[ -z "$branches_to_delete" ]]; then
+        echo "No branches to delete."
+        return 0
+    fi
+
+    # Show the branches to be deleted and ask for confirmation
+    echo "The following branches will be deleted:"
+    echo "$branches_to_delete"
+    echo "Do you want to proceed? (y/n)"
+    read answer
+
+    if [[ "$answer" == [Yy]* ]]; then
+        # If yes, delete the branches
+        echo "$branches_to_delete" | xargs git branch -d
+        echo "Branches deleted."
+    else
+        echo "Deletion cancelled."
+    fi
+}

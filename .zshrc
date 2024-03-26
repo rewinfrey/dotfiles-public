@@ -40,3 +40,10 @@ if [[ -e "$HOME/.zshenv.private" ]]; then
   source "$HOME/.zshenv.private"
 fi
 
+# Go
+export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
+export GOPRIVATE=
+export GONOPROXY=
+export GONOSUMDB=github.com/github/*
+export GOPATH=`go env GOPATH`
+export PATH=$GOPATH/bin:$PATH
