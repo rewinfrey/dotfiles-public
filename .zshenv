@@ -29,6 +29,9 @@ alias ghcl="gh codespace list"
 alias ghcr="gh codespace rebuild"
 alias ghcs="gh codespace ssh"
 
+# Go
+alias gob="go build -v ./..."
+
 # Navigation aliases
 alias l="ls -alhGg"
 alias aleph="cd $HOME/github/aleph; l"
@@ -96,5 +99,19 @@ delete_unused_branches() {
         echo "Branches deleted."
     else
         echo "Deletion cancelled."
+    fi
+}
+
+got() {
+    # If a single argument is provided, assume it is the name of a specific test
+    # and run only that test. Otherwise, run all tests.
+    if [[ $# -eq 1 ]]; then
+        gotestsum --format pkgname-and-test-fails --format testdox --format-hide-empty-pkg --hide-summary skipped ./... --run "$1"
+    # If there are two arguments provided, assume the first is the path to a directory, and the second is the name of a specific test
+    # and run only that test. Otherwise, run all tests.
+    elif [[ $# -eq 2 ]]; then
+        gotestsum --format pkgname-and-test-fails --format testdox --format-hide-empty-pkg --hide-summary skipped "$1" --run "$2"
+    else
+        gotestsum --format pkgname-and-test-fails --format testdox --format-hide-empty-pkg --hide-summary skipped ./...
     fi
 }

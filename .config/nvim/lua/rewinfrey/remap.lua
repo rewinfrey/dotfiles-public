@@ -77,13 +77,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Markdown preview
-vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-
-vim.keymap.set('n', '<leader>mp', ':PeekOpen<CR>')
-vim.keymap.set('n', '<leader>mc', ':PeekClose<CR>')
-
 -- Go build
 vim.keymap.set('n', '<leader>gb', ':w<CR>:GoBuild<CR>')
 vim.keymap.set('n', '<leader>gt', ':GoTest<CR>')

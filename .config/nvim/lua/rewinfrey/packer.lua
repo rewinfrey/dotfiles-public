@@ -146,9 +146,6 @@ require('packer').startup({
 			end,
 		})
 
-		-- Markdown Preview
-		use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
-
 		use({ "tpope/vim-repeat" })
 
 		-- Terminal in buffer

@@ -18,6 +18,9 @@ vim.o.hlsearch = true
 -- Highlight the current cursor line
 vim.o.cursorline = true
 
+-- Set column guide
+vim.opt.colorcolumn = "80"
+
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
