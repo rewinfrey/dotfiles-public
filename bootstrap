@@ -55,6 +55,9 @@ sudo apt-get install -y direnv
 # Install fzf
 sudo apt-get install -y fzf
 
+# Install ripgrep
+sudo apt-get install -y ripgrep
+
 # Function to create symlink with error handling
 create_symlink() {
   source="$1"

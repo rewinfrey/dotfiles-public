@@ -41,6 +41,7 @@ alias cloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs; l"
 alias github="cd $HOME/github; l"
 alias personal="cd $HOME/personal; l"
 alias se="cd $HOME/github/symbol-extraction; l"
+alias omi="cd $HOME/personal/omi; l"
 
 # Neovim
 alias vim="nvim"
