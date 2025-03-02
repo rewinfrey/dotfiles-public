@@ -67,9 +67,8 @@ vim.cmd [[
   autocmd BufREad,BufNewFile *.tsg set filetype=tsg
 ]]
 
--- Remove trailing whitespace
 vim.cmd [[
-  autocmd BufWritePre * :%s/\s\+$//e
+  autocmd BufWritePre * if &filetype != 'markdown' | %s/\s\+$//e | endif
 ]]
 
 vim.cmd [[
