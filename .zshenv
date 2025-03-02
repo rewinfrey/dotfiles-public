@@ -42,6 +42,7 @@ alias github="cd $HOME/github; l"
 alias personal="cd $HOME/personal; l"
 alias se="cd $HOME/github/symbol-extraction; l"
 alias omi="cd $HOME/personal/omi; l"
+alias lela="cd $HOME/personal/lela; l"
 
 # Neovim
 alias vim="nvim"
@@ -115,4 +116,18 @@ got() {
     else
         gotestsum --format pkgname-and-test-fails --format testdox --format-hide-empty-pkg --hide-summary skipped ./...
     fi
+}
+
+# Uses cargo tree -i for the specified package and feature name to determine what other packages include the target package and feature.
+feature_tree_inverse() {
+  local package=$1
+  local feature=${2:-test-support}  # Default feature is "test-support"
+  local depth=${3:-20}              # Default depth is 10
+
+  if [[ -z "$package" ]]; then
+    echo "Usage: cargo_feature_tree <package> [feature] [depth]"
+    return 1
+  fi
+
+  cargo tree -e features -i "$package" --format "{p} {f}" | grep "$package feature \"$feature\"" -A "$depth"
 }

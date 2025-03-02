@@ -7,7 +7,7 @@
 	autoSetupRemote = true
 [user]
 	name = Rick Winfrey
-	email = rewinfrey@github.com
+	email = rick.winfrey@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -15,3 +15,12 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[rerere]
+	enabled = true
+	autoUpdate = true
+[alias]
+	stash = stash --all
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
