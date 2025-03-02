@@ -41,7 +41,8 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  vim.api.nvim_set_keymap('n', '<leader>gv', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>', {noremap=true, silent=true})
+  vim.api.nvim_set_keymap('n', '<leader>gv',
+    '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>', { noremap = true, silent = true })
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -60,6 +61,7 @@ local servers = {
   -- pyright = {},
   rust_analyzer = {},
   -- tsserver = {},
+  sorbet = {},
 
   --sumneko_lua = {
   --  Lua = {
@@ -89,4 +91,3 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
