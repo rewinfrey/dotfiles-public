@@ -81,7 +81,7 @@ delete_unused_branches() {
     git fetch --prune
 
     # List local branches that are gone (do not have a corresponding remote branch)
-    local branches_to_delete=$(git branch -vv | grep ': gone]' | awk '{print $1}')
+    local branches_to_delete=$(git branch -v | grep '[gone]' | awk '{print $1}')
 
     # Check if there are any branches to delete
     if [[ -z "$branches_to_delete" ]]; then

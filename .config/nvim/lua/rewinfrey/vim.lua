@@ -52,6 +52,12 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.go_fmt_autosave = 1
 vim.g.go_imports_mode = 'goimports-reviser'
 
+-- Set default spacing
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true
+
 -- Rust related configuration
 vim.g.rustfmt_autosave = 1
 
@@ -72,7 +78,7 @@ vim.cmd [[
 ]]
 
 vim.cmd [[
-  autocmd BufWritePre * lua vim.lsp.buf.format()
+  autocmd BufWritePre * lua if vim.bo.filetype ~= "sql" then vim.lsp.buf.format() end
 ]]
 
 -- Always enable spell checking

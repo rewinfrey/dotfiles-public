@@ -29,6 +29,10 @@ require('packer').startup({
 		}
 
 		use {
+			'unisonweb/unison'
+		}
+
+		use {
 			'justinmk/vim-sneak'
 		}
 
@@ -73,6 +77,7 @@ require('packer').startup({
 
 		use { -- Highlight, edit, and navigate code
 			'nvim-treesitter/nvim-treesitter',
+			-- run = ':TSUpdate',
 			run = function()
 				pcall(require('nvim-treesitter.install').update { with_sync = true })
 			end,

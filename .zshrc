@@ -10,6 +10,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Check if .zshenv.private file exists and source it
+if [[ -e "$HOME/.zshenv.private" ]]; then
+  source "$HOME/.zshenv.private"
+fi
+
 # DirEnv
 #if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
@@ -29,11 +34,6 @@ export PATH=$HOME/.cargo/bin:$PATH
 # GHC
 if [ -f "/Users/quercus/.ghcup/env" ]; then
   source "/Users/quercus/.ghcup/env"
-fi
-
-# Check if .zshenv.private file exists and source it
-if [[ -e "$HOME/.zshenv.private" ]]; then
-  source "$HOME/.zshenv.private"
 fi
 
 # Go
