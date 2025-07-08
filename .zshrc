@@ -16,9 +16,9 @@ if [[ -e "$HOME/.zshenv.private" ]]; then
 fi
 
 # DirEnv
-#if command -v direnv >/dev/null 2>&1; then
+if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
-#fi
+fi
 
 # Ruby
 if command -v frum >/dev/null 2>&1; then
@@ -37,10 +37,10 @@ if [ -f "/Users/quercus/.ghcup/env" ]; then
 fi
 
 # Go
-export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
-export GOPRIVATE=
-export GONOPROXY=
-export GONOSUMDB=github.com/github/*
+# export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
+# export GOPRIVATE=
+# export GONOPROXY=
+# export GONOSUMDB=github.com/github/*
 export GOPATH=`go env GOPATH`
 export PATH=$GOPATH/bin:$PATH
 
