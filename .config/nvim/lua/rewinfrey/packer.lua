@@ -3,6 +3,7 @@ local vim = vim
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	_G.is_bootstrap = true
 	is_bootstrap = true
 	vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 	vim.cmd [[packadd packer.nvim]]
@@ -51,13 +52,11 @@ require('packer').startup({
 			event = "InsertEnter",
 			config = function()
 				require("copilot").setup({
-					panel = {
-						enabled = true,
-						auto_refresh = true,
-					},
-					suggestion = {
-						enabled = true,
-						auto_trigger = true,
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+					-- Disable the LSP client
+					server_opts_overrides = {
+						autostart = false,
 					},
 				})
 			end,
