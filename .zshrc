@@ -4,18 +4,18 @@ zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
 PROMPT='%F{#9ccfd8}%~%f %F{#ebbcba}${vcs_info_msg_0_}%f'$'\n''> '
 
-# Check if the OS is macOS (Mac OS)
+# Load shell environment variables
 if [[ "$OSTYPE" == darwin* ]]; then
   # Brew
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Check if .zshenv.private file exists and source it
+# Source .zshenv.private
 if [[ -e "$HOME/.zshenv.private" ]]; then
   source "$HOME/.zshenv.private"
 fi
 
-# DirEnv
+# Direnv
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
@@ -31,11 +31,6 @@ if [ -f "$HOME/.cargo/env" ]; then
 fi
 export PATH=$HOME/.cargo/bin:$PATH
 
-# GHC
-if [ -f "/Users/quercus/.ghcup/env" ]; then
-  source "/Users/quercus/.ghcup/env"
-fi
-
 # Go
 # export GOPROXY=https://goproxy.githubapp.com/mod,https://proxy.golang.org/,direct
 # export GOPRIVATE=
@@ -47,8 +42,9 @@ export PATH=$GOPATH/bin:$PATH
 # TexLive (LaTeX)
 export PATH="/usr/local/texlive/2024/bin/universal-darwin:$PATH"
 
-. "$HOME/.local/bin/env"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# UV and Ruff
+. "$HOME/.local/bin/env"

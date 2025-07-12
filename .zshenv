@@ -122,3 +122,4 @@ feature_tree_inverse() {
 
   cargo tree -e features -i "$package" --format "{p} {f}" | grep "$package feature \"$feature\"" -A "$depth"
 }
+. "$HOME/.cargo/env"
