@@ -46,3 +46,5 @@ export PATH=$GOPATH/bin:$PATH
 
 # TexLive (LaTeX)
 export PATH="/usr/local/texlive/2024/bin/universal-darwin:$PATH"
+
+. "$HOME/.local/bin/env"
