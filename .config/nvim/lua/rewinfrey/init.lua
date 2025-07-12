@@ -1,3 +1,5 @@
-require("rewinfrey.packer")
+-- First load global leader and base vim settings.
 require("rewinfrey.vim")
-require("rewinfrey.remap")
+
+-- Then load vim packages with lazy.nvim.
+require("rewinfrey.lazy")

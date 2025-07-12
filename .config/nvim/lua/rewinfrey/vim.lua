@@ -2,6 +2,10 @@ local vim = vim
 -- Vim configuration
 -- See `:help vim.o`
 
+-- Set the leader
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+
 -- Disable swap files
 vim.o.swapfile = false
 
