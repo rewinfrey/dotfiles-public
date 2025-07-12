@@ -1,7 +1,3 @@
-local vim = vim
--- Vim configuration
--- See `:help vim.o`
-
 -- Set the leader
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
@@ -41,20 +37,20 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
 
 -- Set clipboard to share pastebuffer when yanking in vim
-vim.o.clipboard = 'unnamed'
+vim.o.clipboard = "unnamed"
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 -- Go related configuration
 vim.g.go_fmt_autosave = 1
-vim.g.go_imports_mode = 'goimports-reviser'
+vim.g.go_imports_mode = "goimports-reviser"
 
 -- Set default spacing
 vim.o.shiftwidth = 2
@@ -73,25 +69,29 @@ vim.o.splitbelow = true
 vim.o.laststatus = 3
 
 -- Detect tsg files
-vim.cmd [[
+vim.cmd([[
   autocmd BufREad,BufNewFile *.tsg set filetype=tsg
-]]
+]])
 
-vim.cmd [[
-  autocmd BufWritePre * if &filetype != 'markdown' | %s/\s\+$//e | endif
-]]
+vim.g.strip_trailing_whitespace = true
 
-vim.cmd [[
+vim.cmd([[
+  autocmd BufWritePre * if g:strip_trailing_whitespace | %s/\s\+$//e | endif
+]])
+
+vim.api.nvim_create_user_command("ToggleStripWhitespace", function()
+  vim.g.strip_trailing_whitespace = not vim.g.strip_trailing_whitespace
+  print("Strip trailing whitespace: " .. tostring(vim.g.strip_trailing_whitespace))
+end, {})
+
+vim.cmd([[
   autocmd BufWritePre * lua if vim.bo.filetype ~= "sql" then vim.lsp.buf.format() end
-]]
+]])
 
 -- Always enable spell checking
-vim.cmd [[
+vim.cmd([[
   autocmd BufRead,BufNewFile * setlocal spell spelllang=en_us
-]]
+]])
 
 -- MarkdownPreview configuration
-vim.g.mkdp_page_title = ''
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+vim.g.mkdp_page_title = ""

@@ -2,10 +2,10 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
-      pcall(require("nvim-treesitter.install").update { with_sync = true })
+      pcall(require("nvim-treesitter.install").update({ with_sync = true }))
     end,
     config = function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "c",
           "cpp",
@@ -101,7 +101,7 @@ return {
             show_help = "?",
           },
         },
-      }
+      })
 
       vim.keymap.set("n", "<leader>tp", ":TSPlaygroundToggle<CR>")
     end,

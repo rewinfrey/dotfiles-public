@@ -1,9 +1,11 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git", "clone", "--filter=blob:none",
+    "git",
+    "clone",
+    "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    lazypath
+    lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -12,7 +14,7 @@ require("lazy").setup({
   { import = "rewinfrey.plugins" }, -- automatically loads all modules in plugins/
 }, {
   defaults = {
-    lazy = false, -- load everything unless explicitly marked lazy
+    lazy = false,
   },
   install = {
     missing = true,
