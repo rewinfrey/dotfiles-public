@@ -34,15 +34,8 @@ alias gob="go build -v ./..."
 
 # Navigation aliases
 alias l="ls -alhGg"
-alias aleph="cd $HOME/github/aleph; l"
-alias blackbird="cd $HOME/github/blackbird; l"
-alias blackbird-mw="cd $HOME/github/blackbird-mw; l"
+alias c="cd $HOME/code; l"
 alias cloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs; l"
-alias github="cd $HOME/github; l"
-alias personal="cd $HOME/personal; l"
-alias se="cd $HOME/github/symbol-extraction; l"
-alias omi="cd $HOME/personal/omi; l"
-alias lela="cd $HOME/personal/lela; l"
 
 # Neovim
 alias vim="nvim"
@@ -61,9 +54,6 @@ alias tsp="tree-sitter parse"
 # Other
 alias notes="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Notes; vim"
 
-# Stack Graphs
-alias tv="./contrib/test test"
-
 # Tailscale
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
@@ -71,10 +61,9 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias ezshenv="vim $HOME/.zshenv"
 alias ezshrc="vim $HOME/.zshrc"
 alias etmux="vim $HOME/.tmux.conf"
-alias epacker="vim $HOME/.config/nvim/lua/rewinfrey/packer.lua"
 alias elazy="vim $HOME/.config/nvim/lua/rewinfrey/lazy.lua"
 alias evim="vim $HOME/.config/nvim/lua/rewinfrey/vim.lua"
-alias eremap="vim $HOME/.config/nvim/lua/rewinfrey/remap.lua"
+alias ekeymaps="vim $HOME/.config/nvim/lua/rewinfrey/keymaps.lua"
 alias ebootstrap="vim $HOME/dotfiles-public/bootstrap"
 
 # Helper functions
