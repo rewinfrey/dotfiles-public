@@ -1,0 +1,6 @@
+# Use 2 spaces instead of tabs
+indent_type = "Spaces"
+indent_width = 2
+column_width = 100
+
+quote_style = "AutoPreferDouble"
