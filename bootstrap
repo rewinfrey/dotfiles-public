@@ -57,7 +57,7 @@ install_packages_linux() {
 }
 
 install_packages_mac() {
-    brew install tmux direnv fzf ripgrep zsh
+    brew install tmux direnv frum fzf go pyenv ripgrep rust zsh
 }
 
 if [ "$OS" = "mac" ]; then
