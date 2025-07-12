@@ -72,8 +72,10 @@ alias ezshenv="vim $HOME/.zshenv"
 alias ezshrc="vim $HOME/.zshrc"
 alias etmux="vim $HOME/.tmux.conf"
 alias epacker="vim $HOME/.config/nvim/lua/rewinfrey/packer.lua"
+alias elazy="vim $HOME/.config/nvim/lua/rewinfrey/lazy.lua"
 alias evim="vim $HOME/.config/nvim/lua/rewinfrey/vim.lua"
 alias eremap="vim $HOME/.config/nvim/lua/rewinfrey/remap.lua"
+alias ebootstrap="vim $HOME/dotfiles-public/bootstrap"
 
 # Helper functions
 delete_unused_branches() {
