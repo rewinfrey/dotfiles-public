@@ -34,9 +34,12 @@ return {
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, "[W]orkspace [L]ist Folders")
 
-        vim.api.nvim_set_keymap("n", "<leader>gv",
+        vim.api.nvim_set_keymap(
+          "n",
+          "<leader>gv",
           '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<CR>',
-          { noremap = true, silent = true })
+          { noremap = true, silent = true }
+        )
 
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
           vim.lsp.buf.format()
@@ -49,32 +52,32 @@ return {
         capabilities = cmp_lsp.default_capabilities(capabilities)
       end
 
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = { "*.py" },
-				callback = function()
-					vim.lsp.buf.format({ async = false })
-				end,
-			})
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.py" },
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
 
       local servers = {
         gopls = {},
-				ruff = {},
+        ruff = {},
       }
 
       local mason_lspconfig = require("mason-lspconfig")
       mason_lspconfig.setup({
-				ensure_installed = vim.tbl_filter(function(server)
-					return server ~= "rust_analyzer"
-				end, vim.tbl_keys(servers)),
+        ensure_installed = vim.tbl_filter(function(server)
+          return server ~= "rust_analyzer"
+        end, vim.tbl_keys(servers)),
       })
 
-			for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
-				require("lspconfig")[server_name].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					settings = servers[server_name],
-				})
-			end
+      for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
+        require("lspconfig")[server_name].setup({
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = servers[server_name],
+        })
+      end
     end,
   },
   {
@@ -82,8 +85,8 @@ return {
     config = true,
   },
   {
-    "williamboman/mason-lspconfig.nvim"
-	},
+    "williamboman/mason-lspconfig.nvim",
+  },
   {
     "folke/neodev.nvim",
     config = true,
