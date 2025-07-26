@@ -123,3 +123,14 @@ feature_tree_inverse() {
   cargo tree -e features -i "$package" --format "{p} {f}" | grep "$package feature \"$feature\"" -A "$depth"
 }
 . "$HOME/.cargo/env"
+
+frum_install_with_ssl() {
+    local version=$1
+    if [[ -z "$version" ]]; then
+        echo "Usage: frum_safe_install_ruby <ruby-version>"
+        return 1
+    fi
+
+  echo "📦 Installing Ruby $version with Frum..."
+  frum install "$version" --with-openssl-dir=$(brew --prefix openssl@3)
+}
