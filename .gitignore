@@ -1,6 +1,7 @@
 .config/gh/
 .config/github-copilot/
 .config/nvim/plugin/packer_compiled.lua
+.config/nvim/lazy-lock.json
 
 .DS_Store
 
