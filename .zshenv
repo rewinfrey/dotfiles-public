@@ -65,6 +65,7 @@ alias elazy="vim $HOME/.config/nvim/lua/rewinfrey/lazy.lua"
 alias evim="vim $HOME/.config/nvim/lua/rewinfrey/vim.lua"
 alias ekeymaps="vim $HOME/.config/nvim/lua/rewinfrey/keymaps.lua"
 alias ebootstrap="vim $HOME/dotfiles-public/bootstrap"
+alias eaerospace="vim $HOME/.aerospace.toml"
 
 # Helper functions
 delete_unused_branches() {
