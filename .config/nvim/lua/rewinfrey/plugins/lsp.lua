@@ -52,16 +52,25 @@ return {
         capabilities = cmp_lsp.default_capabilities(capabilities)
       end
 
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.py" },
-        callback = function()
-          vim.lsp.buf.format({ async = false })
-        end,
-      })
-
       local servers = {
         gopls = {},
-        ruff = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                diagnosticMode = "off", -- let Ruff handle linting
+              },
+              pythonPath = "./.venv/bin/python",
+            },
+          },
+        },
+        ruff = {
+          cmd = { "uv", "run", "ruff", "server", "--preview" },
+          -- Ruff uses init_options instead of settings
+          init_options = {
+            settings = {},
+          },
+        },
       }
 
       local mason_lspconfig = require("mason-lspconfig")
@@ -72,12 +81,33 @@ return {
       })
 
       for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
-        require("lspconfig")[server_name].setup({
+        local server_opts = {
           capabilities = capabilities,
           on_attach = on_attach,
-          settings = servers[server_name],
-        })
+        }
+
+        local config = servers[server_name]
+        if config then
+          for k, v in pairs(config) do
+            server_opts[k] = v
+          end
+        end
+
+        require("lspconfig")[server_name].setup(server_opts)
       end
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = { "*.py" },
+        callback = function()
+          -- Only format with Ruff if it's attached
+          for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+            if client.name == "ruff" and client.supports_method("textDocument/formatting") then
+              vim.lsp.buf.format({ async = false, name = "ruff" })
+              return
+            end
+          end
+        end,
+      })
     end,
   },
   {
