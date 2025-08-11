@@ -35,7 +35,7 @@ alias gob="go build -v ./..."
 # Navigation aliases
 alias l="ls -alhGg"
 alias c="cd $HOME/code; l"
-alias nuanced="cd $HOME/code/nuanced; l"
+alias n="cd $HOME/code/nuanced; l"
 alias cloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs; l"
 
 # Neovim
