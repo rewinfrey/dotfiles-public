@@ -136,3 +136,5 @@ frum_install_with_ssl() {
   echo "📦 Installing Ruby $version with Frum..."
   frum install "$version" --with-openssl-dir=$(brew --prefix openssl@3)
 }
+
+source "$HOME/dotfiles-private/.zshenv.private" 2>/dev/null || true
