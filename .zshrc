@@ -21,9 +21,12 @@ if command -v direnv >/dev/null 2>&1; then
 fi
 
 # Ruby
-if command -v frum >/dev/null 2>&1; then
-  eval "$(frum init)"
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - --no-rehash)"
 fi
+# if command -v frum >/dev/null 2>&1; then
+#   eval "$(frum init)"
+# fi
 
 # Rust
 if [ -f "$HOME/.cargo/env" ]; then
@@ -58,3 +61,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# bun completions
+[ -s "/Users/rewinfrey/.bun/_bun" ] && source "/Users/rewinfrey/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
