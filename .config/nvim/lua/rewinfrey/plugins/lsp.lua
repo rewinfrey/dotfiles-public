@@ -71,6 +71,30 @@ return {
             settings = {},
           },
         },
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,            -- enable if you commonly use features
+                buildScripts = { enable = true },
+              },
+              checkOnSave = {
+                command = "clippy",            -- run clippy on save
+              },
+              procMacro = { enable = true },
+              inlayHints = {
+                lifetimeElisionHints = { enable = true, useParameterNames = true },
+                bindingModeHints = { enable = true },
+                closureReturnTypeHints = { enable = "with_block" },
+                implicitDrops = { enable = true },
+              },
+              -- Helpful if you use rustfmt nightly options:
+              rustfmt = {
+                extraArgs = {},                -- e.g. { "+nightly" }
+              },
+            },
+          },
+        },
       }
 
       local mason_lspconfig = require("mason-lspconfig")
@@ -86,14 +110,16 @@ return {
           on_attach = on_attach,
         }
 
-        local config = servers[server_name]
-        if config then
-          for k, v in pairs(config) do
+        local server = servers[server_name]
+        if server then
+          for k, v in pairs(server) do
             server_opts[k] = v
           end
         end
 
-        require("lspconfig")[server_name].setup(server_opts)
+        -- https://github.com/neovim/nvim-lspconfig/blob/aafecf5b8bc0a768f1a97e3a6d5441e64dee79f9/doc/lspconfig.txt#L36
+        -- vim.lsp.config(server_name, server_opts)
+        vim.lsp.enable(server_name)
       end
 
       vim.api.nvim_create_autocmd("BufWritePre", {
