@@ -173,6 +173,7 @@ create_symlink "$dotfiles_dir/.config/nvim" "$HOME/.config/nvim"
 create_symlink "$dotfiles_dir/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_dir/.hushlogin" "$HOME/.hushlogin"
 create_symlink "$dotfiles_dir/.aerospace.toml" "$HOME/.aerospace.toml"
+create_symlink "$dotfiles_dir/.claude/settings.json" "$HOME/.claude/settings.json"
 
 # Change shell to zsh (only for Linux/Codespaces)
 if [ "$OS" != "mac" ]; then
