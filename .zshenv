@@ -38,6 +38,13 @@ alias c="cd $HOME/code; l"
 alias n="cd $HOME/code/nuanced; l"
 alias cloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs; l"
 
+# Nuanced aliases
+alias nl="cd $HOME/code/nuanced/license-server; l"
+alias nlsp="cd $HOME/code/nuanced/nuanced-lsp; l"
+alias nts="cd $HOME/code/nuanced/nuanced-ts; l"
+alias nmcp="cd $HOME/code/nuanced/nuanced-mcp-ts; l"
+alias nlsproxy="cd $HOME/code/nuanced/lsproxy; l"
+
 # Neovim
 alias vim="nvim"
 
