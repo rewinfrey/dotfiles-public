@@ -68,3 +68,6 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/rewinfrey/.antigravity/antigravity/bin:$PATH"
