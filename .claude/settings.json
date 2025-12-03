@@ -1,7 +1,10 @@
 {
-  "alwaysThinkingEnabled": true,
   "statusLine": {
     "type": "command",
     "command": "tsx ~/dotfiles-public/statusline.ts"
-  }
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-code-plugins": true
+  },
+  "alwaysThinkingEnabled": true
 }
